@@ -5,7 +5,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
 
   def index
-    @projects = current_user.projects
+    if current_user
+      @projects = current_user.projects
+    end
 
     respond_to do |format|
       format.html # index.html.erb
