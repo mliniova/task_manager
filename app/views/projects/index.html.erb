@@ -1,0 +1,16 @@
+<h1>Listing projects</h1>
+
+<% @projects.each do |project| %>
+  <div class="well project">
+    <%= link_to project.name, project %>
+    <%= project.description.split(" ").first(10).join if project.description %>
+    <div class="right">
+      <%= link_to 'Edit', edit_project_path(project) %>
+      <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>
+
+<br />
+
+<%= link_to 'New Project', new_project_path, :class => 'btn' %>

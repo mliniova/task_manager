@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<p><%= @project.name %></p>
+<p><%= @project.description %></p>
+<p>Tasks:</p>
+<ul>
+  <% @project.tasks.each do |task| %>
+    <li> 
+     	<%= task.name %> 
+   	 	<%= link_to "mark as #{task.done ? 'undone' : 'done'}", do_undo_project_task_path(@project, task), :method => :put %> 
+    </li>
+  <% end %>	
+</ul>
+<%- if !@project.tasks.any? %>
+  <p>There are no any tasks. Do you want add some?</p>
+<% end %>
+
+<%= link_to 'Add task', new_task_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
